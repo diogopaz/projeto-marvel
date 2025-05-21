@@ -2,7 +2,7 @@
 
 Este projeto consome dados da [Marvel Comics API](https://developer.marvel.com/) e realiza análises exploratórias para descobrir insights sobre personagens, quadrinhos, eventos e séries.
 
-A aplicação foi desenvolvida em **Python** com uso de bibliotecas como `pandas`, `numpy`, `matplotlib`,`dotenv` e executada em um ambiente do **Google Colab**.
+A aplicação foi desenvolvida em **Python** com uso de bibliotecas como `pandas`, `numpy`, `matplotlib`, etc... e executada em um ambiente do **Google Colab**.
 
 ---
 
@@ -19,7 +19,8 @@ A aplicação foi desenvolvida em **Python** com uso de bibliotecas como `pandas
 - Python 3
 - Google Colab
 - [Marvel API](https://developer.marvel.com/)
-- `requests`
+- `hashlib`
+- `plotly`
 - `pandas`
 - `numpy`
 - `matplotlib`
@@ -67,6 +68,11 @@ import os
 import pandas as pd
 from dotenv import load_dotenv
 import sqlite3
+from google.colab import userdata
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+import numpy as np
 ```
 após isso executar a célula resposável por importar as bibliotecas.
 
@@ -94,7 +100,7 @@ params = {
 ```
 
 
-#### 3.5 Realizando a requisição.
+#### 3.5 Criação de tabelas no sqlite.
 
 ```python
 url = 'https://gateway.marvel.com/v1/public/characters'
