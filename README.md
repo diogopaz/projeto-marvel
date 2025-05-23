@@ -43,7 +43,7 @@ Crie uma conta gratuita em https://developer.marvel.com/ e pegue suas chaves que
 
 Existem duas formas de utilizar as suas chaves para realizar requisições executando o código, usando <i/>`Secrets`</i> do próprio <i/>Google Colab</i> ou com um arquivo `.env`.
 
-Ambos métodos estão descritos no notebook com o código fonte do projeto.
+Ambos métodos estão descritos no notebook [`projeto_marvel.pynb`](projeto_marvel.ipynb) com o código fonte do projeto.
 
 ### Passo 2: Abrir o arquivo no Google Colab
 No início do arquivo [`projeto_marvel.pynb`](projeto_marvel.ipynb) existe um botão `Open in Colab` com o link para abrí-lo direto no Colab.
