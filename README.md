@@ -41,7 +41,7 @@ Crie uma conta gratuita em https://developer.marvel.com/ e pegue suas chaves que
 - `MARVEL_PUBLIC_KEY`
 - `MARVEL_PRIVATE_KEY`
 
-Existem duas formas de utilizar as suas chaves para realizar requisições executando o código, usando `<i/>Secrets</i>` do próprio <i/>Google Colab</i> ou com um arquivo `.env`.
+Existem duas formas de utilizar as suas chaves para realizar requisições executando o código, usando <i/>`Secrets`</i> do próprio <i/>Google Colab</i> ou com um arquivo `.env`.
 
 Ambos métodos estão descritos no notebook com o código fonte do projeto.
 
