@@ -46,7 +46,7 @@ Existem duas formas de utilizar as suas chaves para realizar requisições execu
 Ambos métodos estão descritos no notebook [`projeto_marvel.pynb`](projeto_marvel.ipynb) com o código fonte do projeto.
 
 ### Passo 2: Abrir o arquivo no Google Colab
-No início do arquivo [`projeto_marvel.pynb`](projeto_marvel.ipynb) existe um botão `Open in Colab` com o link para abrí-lo direto no Colab.
+No início do arquivo [`projeto_marvel.pynb`](projeto_marvel.ipynb) existe um botão `Open in Colab` com o link para abrí-lo direto no Colab. Será necessário realizar login em uma conta do Google para executar o código em um ambiente de execução do Colab.
 
 ### Passo 3: Executar as células de código na ordem.
 Para realizar o fluxo principal de execução (Obter os dados da API, tratá-los, salvar no banco de dados e, por fim, realizar análises a partir desses dados), basta executar as células na ordem em que aparecem no `.ipynb`.
