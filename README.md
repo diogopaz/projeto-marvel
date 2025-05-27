@@ -3,6 +3,7 @@
 Este projeto consome dados da [Marvel Comics API](https://developer.marvel.com/) e realiza análises exploratórias para descobrir insights sobre personagens, quadrinhos, eventos e séries.
 
 A aplicação foi desenvolvida em **Python** com uso de bibliotecas como `pandas`, `numpy`, `matplotlib`, etc... e executada em um ambiente do **Google Colab**.
+
 Nesta branch está disponível o script (`main.py`), que corresponde ao Backend do projeto. Para rodar o código de forma interativa pelo **Google Colab**, por favor acesse a branch `colab`.
 
 ---
