@@ -1,3 +1,12 @@
+#  Análise de Dados da Marvel API com Python
+
+Este projeto consome dados da [Marvel Comics API](https://developer.marvel.com/) e realiza análises exploratórias para descobrir insights sobre personagens, quadrinhos, eventos e séries.
+
+A aplicação foi desenvolvida em **Python** com uso de bibliotecas como `pandas`, `numpy`, `matplotlib`, etc... e executada em um ambiente do **Google Colab**.
+Nesta branch está disponível o script (`main.py`), que corresponde ao Backend do projeto. Para rodar o código de forma interativa pelo **Google Colab**, por favor acesse a branch `colab`.
+
+---
+
 # Backend ETL da Marvel API
 
 Este script Python (`main.py`) é responsável por coletar, tratar e armazenar dados da Marvel API em um banco de dados SQLite. Ele atua como backend do projeto, realizando o processo de ETL (Extract, Transform, Load), deixando os dados prontos para serem utilizados em análises, visualizações ou outras formas de apresentação.
