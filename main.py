@@ -21,6 +21,7 @@ def get_auth_params():
         'hash': hash_md5
     }
 
+# Função principal de requisições
 def fetch_from_marvel(endpoint, limit = 100, offset = 0):
     "Busca todos os resultados de um endpoint paginado da Marvel API"
     limit = limit
@@ -67,6 +68,7 @@ Dados brutos salvos em: {endpoint.split("/")[-1]}.csv
 ''')
     return df
 
+# Salva no banco de dados
 def to_db(df, table_name, db_name):
     if df.empty:
         print(f"DataFrame para '{table_name}' está vazio. Nada a salvar no banco '{db_name}'.")
@@ -80,6 +82,7 @@ def to_db(df, table_name, db_name):
     except Exception as e:
         print(e)
 
+# Extrai os preços disponíveis para cada quadrinho
 def extract_comic_prices(df_comics):
     records = []
     for _, row in df_comics.iterrows():
@@ -92,7 +95,7 @@ def extract_comic_prices(df_comics):
             })
     return pd.DataFrame(records)
 
-
+# Extrai os criadores de cada quadrinho
 def extract_comic_creators(df_comics):
     records = []
     for _, row in df_comics.iterrows():
@@ -111,6 +114,7 @@ def extract_comic_creators(df_comics):
                 continue
     return pd.DataFrame(records)
 
+# Extrai os quadrinhos em que cada personagem está presente
 def extract_character_comics(character_ids):
     all_pairs = []
     for character_id in character_ids:
@@ -145,7 +149,6 @@ def extract_character_comics(character_ids):
     return df
 
 # Funções para encapsular cada etapa do ETL
-
 def run_characters_etl(db_name_param='marvel'):
     print("\n--- EXECUTANDO ETL DE PERSONAGENS ---")
     characters = fetch_from_marvel('https://gateway.marvel.com/v1/public/characters')
@@ -159,7 +162,6 @@ def run_characters_etl(db_name_param='marvel'):
     else:
         print("Nenhum dado de personagem retornado pela API.")
     print("--- ETL DE PERSONAGENS CONCLUÍDO ---")
-
 
 def run_comics_etl(db_name_param='marvel'):
     print("\n--- EXECUTANDO ETL DE QUADRINHOS ---")
