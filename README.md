@@ -1,58 +1,86 @@
-#  Análise de Dados da Marvel API com Python
+# Backend ETL da Marvel API
 
-Este projeto consome dados da [Marvel Comics API](https://developer.marvel.com/) e realiza análises exploratórias para descobrir insights sobre personagens, quadrinhos, eventos e séries.
+Este script Python (`main.py`) é responsável por coletar, tratar e armazenar dados da Marvel API em um banco de dados SQLite. Ele atua como backend do projeto, realizando o processo de ETL (Extract, Transform, Load), deixando os dados prontos para serem utilizados em análises, visualizações ou outras formas de apresentação.
 
-A aplicação foi desenvolvida em **Python** com uso de bibliotecas como `pandas`, `numpy`, `matplotlib`, etc... e executada em um ambiente do **Google Colab**.
+## Funcionalidades
 
----
-
-##  Objetivo
-
-- Explorar os dados públicos da Marvel de forma interativa.
-- Aplicar boas práticas de desenvolvimento no processo.
-- Encontrar insights significativos no meio da vasta gama de informação presente na API.
-
----
-
-##  Tecnologias Utilizadas
-
-- Python 3
-- Google Colab
-- [Marvel API](https://developer.marvel.com/)
-- `hashlib`
-- `plotly`
-- `pandas`
-- `numpy`
-- `matplotlib`
-- `dotenv`
-- `sqlite3` (opcional, para persistência local de dados)
-
+- Extrai dados da API da Marvel (personagens, quadrinhos, criadores)
+- Trata os dados, estruturando informações como:
+  - Relação de quadrinhos por personagem
+  - Preços e criadores associados a quadrinhos
+- Armazena os dados em um banco de dados SQLite local
+- Exporta também os dados brutos em formato `.csv`
 
 ---
 
-##  How To:
-Ao longo do arquivo [`projeto_marvel.pynb`](projeto_marvel.ipynb) estão presentes campos de texto `Markdown` com instruções de como executar cada parte do código.
+## Como executar
 
-### Passo 1: Obtenha as Chaves da Marvel
-A API da marvel exige uma chave pública e uma privada para realizar requisições.
+Você pode executar o script diretamente pela linha de comando, usando Python 3:
 
-Crie uma conta gratuita em https://developer.marvel.com/ e pegue suas chaves que serão utilizadas no código como:
+```bash
+python main.py [opções]
+```
 
-- `MARVEL_PUBLIC_KEY`
-- `MARVEL_PRIVATE_KEY`
+### Parâmetros disponíveis
 
-Existem duas formas de utilizar as suas chaves para realizar requisições executando o código, usando <i/>`Secrets`</i> do próprio <i/>Google Colab</i> ou com um arquivo `.env`.
+| Parâmetro        | Ação                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| `--characters`   | Executa apenas o ETL de personagens                          |
+| `--comics`       | Executa apenas o ETL de quadrinhos                           |
+| `--creators`     | Executa apenas o ETL de criadores                            |
+| `--all`          | Executa o ETL completo (personagens, quadrinhos e criadores) |
+| `--db-name NOME` | Define o nome do arquivo `.db` (padrão: `marvel.db`)         |
 
-Ambos métodos estão descritos no notebook [`projeto_marvel.pynb`](projeto_marvel.ipynb) com o código fonte do projeto.
+> Se nenhuma opção for passada, o script executa o ETL completo por padrão (equivalente a `--all`).
 
-### Passo 2: Abrir o arquivo no Google Colab
-No início do arquivo [`projeto_marvel.pynb`](projeto_marvel.ipynb) existe um botão `Open in Colab` com o link para abrí-lo direto no Colab. Será necessário realizar login em uma conta do Google para executar o código em um ambiente de execução do Colab.
+### Exemplos de uso
 
-### Passo 3: Executar as células de código na ordem.
-Para realizar o fluxo principal de execução (Obter os dados da API, tratá-los, salvar no banco de dados e, por fim, realizar análises a partir desses dados), basta executar as células na ordem em que aparecem no `.ipynb`.
+Executar o ETL completo:
 
-## Novas análises sem uma API key:
-Para evitar atrasos na realização de novas análises em cima dos dados extraídos da API, disponibilizamos o arquivo compactado [BD_21-05-25.7z](BD_21-05-25.7z), que conta com os dados brutos extraídos de cada endpoint em arquivos `.csv`  e o banco com os dados mais atualizados da API até a data descrita no título do arquivo.
+```bash
+python main.py
+```
 
-Após fazer upload do banco de dados `marvel.db` no ambiente de execução do Google Colab, é possível visualizar os insights obtidos sem a necessidade de realizar novas requisições, basta rodar as células da seção `Insights`. Isso também descarta a necessidade de criar uma conta para obter uma chave para requisições da API.
+Executar apenas os personagens e salvar em `dados.db`:
 
+```bash
+python main.py --characters --db-name dados
+```
+
+Executar quadrinhos e criadores:
+
+```bash
+python main.py --comics --creators
+```
+
+---
+
+## Configuração das chaves da API
+
+Você precisa de uma conta na [Marvel Developer Portal](https://developer.marvel.com) para obter suas chaves.
+
+Crie um arquivo chamado `.env` no mesmo diretório do script com o seguinte conteúdo:
+
+```
+MARVEL_PUBLIC_KEY=sua_chave_publica
+MARVEL_PRIVATE_KEY=sua_chave_privada
+```
+
+---
+
+## Estrutura das tabelas geradas
+
+O banco SQLite conterá tabelas como:
+
+- `characters`: ID, nome, descrição, data de modificação e número de quadrinhos
+- `character_comics`: relação entre personagens e quadrinhos
+- `comics`: ID, título, número de páginas e variantes
+- `comic_prices`: preços dos quadrinhos (digital, print, etc.)
+- `comic_creators`: relação entre quadrinhos e criadores, com os respectivos papéis
+- `creators`: informações sobre os criadores (nome completo, sufixos, etc.)
+
+---
+
+## Próximos passos
+
+Com os dados organizados e salvos, você pode utilizar bibliotecas como **Pandas**, **Plotly**, **Matplotlib** ou frameworks web para gerar dashboards, gráficos interativos e análises com base nas informações coletadas.
